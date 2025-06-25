@@ -57,14 +57,16 @@
             letter-spacing: 0.05em;
         }
         .link-button-primary {
-            background-color: #3b82f6; /* Blue */
+            /* Changed to a dark slate blue */
+            background-color: #475569; /* Slate 700 */
             color: #ffffff;
-            box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.5), 0 2px 4px -1px rgba(59, 130, 246, 0.2);
+            box-shadow: 0 4px 6px -1px rgba(71, 85, 105, 0.5), 0 2px 4px -1px rgba(71, 85, 105, 0.2);
         }
         .link-button-primary:hover {
-            background-color: #2563eb; /* Darker blue on hover */
+            /* Darker slate blue on hover */
+            background-color: #334155; /* Slate 800 */
             transform: scale(1.05); /* Slight scale on hover */
-            box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.6), 0 4px 6px -2px rgba(59, 130, 246, 0.3);
+            box-shadow: 0 10px 15px -3px rgba(71, 85, 105, 0.6), 0 4px 6px -2px rgba(71, 85, 105, 0.3);
         }
         .link-button-secondary {
             background-color: #6366f1; /* Indigo */
@@ -76,6 +78,17 @@
             transform: scale(1.05); /* Slight scale on hover */
             box-shadow: 0 10px 15px -3px rgba(99, 102, 241, 0.6), 0 4px 6px -2px rgba(99, 102, 241, 0.3);
         }
+        .link-button-mail { /* Changed to a vibrant teal */
+            background-color: #14b8a6; /* Teal 500 */
+            color: #ffffff;
+            box-shadow: 0 4px 6px -1px rgba(20, 184, 166, 0.5), 0 2px 4px -1px rgba(20, 184, 166, 0.2);
+        }
+        .link-button-mail:hover {
+            background-color: #0d9488; /* Darker teal on hover */
+            transform: scale(1.05);
+            box-shadow: 0 10px 15px -3px rgba(20, 184, 166, 0.6), 0 4px 6px -2px rgba(20, 184, 166, 0.3);
+        }
+
 
         /* Profile Avatar Placeholder */
         .profile-avatar {
@@ -114,9 +127,12 @@
                 </div>
                 <h1 class="text-5xl sm:text-6xl font-extrabold text-gray-900 mb-3 section-title">Anjan Khand Thakuri</h1>
                 <p class="text-xl sm:text-2xl text-gray-700">Software Developer specializing in <span class="font-bold text-blue-700">Graphics</span></p>
-                <div class="mt-8">
+                <div class="mt-8 flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
                     <a href="https://www.linkedin.com/in/anjan-khand-thakuri/" target="_blank" rel="noopener noreferrer" class="link-button link-button-primary">
                         Connect on LinkedIn
+                    </a>
+                    <a href="mailto:thakuriboy132@gmail.com" class="link-button link-button-mail">
+                        Send Email
                     </a>
                 </div>
             </header>
