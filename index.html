@@ -81,7 +81,7 @@
         .profile-avatar {
             width: 120px;
             height: 120px;
-            background-color: #cbd5e1; /* Light gray for placeholder */
+            background-color: #cbd5e1; /* Light gray for placeholder, though image will cover it */
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -90,6 +90,13 @@
             color: #64748b;
             border: 4px solid #ffffff; /* White border */
             box-shadow: 0 0 0 8px rgba(255,255,255,0.3); /* Outer glow */
+            overflow: hidden; /* Ensure image stays within bounds */
+        }
+        .profile-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Cover the area without distorting aspect ratio */
+            border-radius: 50%; /* Ensure the image itself is circular */
         }
     </style>
 </head>
@@ -102,8 +109,7 @@
             <header class="text-center mb-12 relative">
                 <div class="flex justify-center mb-6">
                     <div class="profile-avatar">
-                        <svg class="w-16 h-16" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
-                        <!-- You can replace the SVG with an image later: <img src="your-avatar.jpg" alt="Anjan Khand Thakuri" class="rounded-full w-32 h-32 object-cover"> -->
+                        <img src="https://siriuscreator.github.io/anjan.jpg" alt="Anjan Khand Thakuri Profile Picture" onerror="this.onerror=null;this.src='https://placehold.co/120x120/cbd5e1/64748b?text=AK';" />
                     </div>
                 </div>
                 <h1 class="text-5xl sm:text-6xl font-extrabold text-gray-900 mb-3 section-title">Anjan Khand Thakuri</h1>
