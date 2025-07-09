@@ -1,256 +1,219 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ruby Byte - Innovative Software Solutions</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Montserrat:wght{700;800;900&display=swap" rel="stylesheet">
-    <style>
-        body {
-            /* More professional, subtle gradient background */
-            background: linear-gradient(to right bottom, #e0e7ff, #c3daff, #a7c0ff); /* Muted blue/grey tones */
-            background-size: 400% 400%;
-            animation: gradientAnimation 20s ease infinite; /* Slower animation */
-            font-family: 'Inter', sans-serif;
-            color: #374151; /* Dark gray text */
-        }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ruby Byte - Innovative Software Solutions</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Montserrat:wght{700;800;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            /* More professional, subtle gradient background */
+            background: linear-gradient(to right bottom, #e0e7ff, #c3daff, #a7c0ff); /* Muted blue/grey tones */
+            background-size: 400% 400%;
+            animation: gradientAnimation 20s ease infinite; /* Slower animation */
+            font-family: 'Inter', sans-serif;
+            color: #374151; /* Dark gray text */
+        }
 
-        @keyframes gradientAnimation {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
 
-        .container-wrapper {
-            background-color: rgba(255, 255, 255, 0.95); /* Slightly transparent white container */
-            backdrop-filter: blur(8px); /* Frosted glass effect */
-            border-radius: 1.5rem; /* More rounded corners for the main container */
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-        }
+        .container-wrapper {
+            background-color: rgba(255, 255, 255, 0.95); /* Slightly transparent white container */
+            backdrop-filter: blur(8px); /* Frosted glass effect */
+            border-radius: 1.5rem; /* More rounded corners for the main container */
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
 
-        .section-title {
-            font-family: 'Montserrat', sans-serif;
-            color: #1f2937; /* Darker gray for titles */
-            font-weight: 800; /* Extra bold */
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-        }
-        .card {
-            background-color: #ffffff; /* White card background */
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease-in-out; /* Smooth transitions for hover effects */
-        }
-        .card:hover {
-            transform: translateY(-5px) scale(1.02); /* Lift and slightly enlarge on hover */
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 10px 10px -5px rgba(0, 0, 0, 0.08);
-        }
+        .section-title {
+            font-family: 'Montserrat', sans-serif;
+            color: #1f2937; /* Darker gray for titles */
+            font-weight: 800; /* Extra bold */
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+        .card {
+            background-color: #ffffff; /* White card background */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease-in-out; /* Smooth transitions for hover effects */
+        }
+        .card:hover {
+            transform: translateY(-5px) scale(1.02); /* Lift and slightly enlarge on hover */
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 10px 10px -5px rgba(0, 0, 0, 0.08);
+        }
 
-        .link-button {
-            display: inline-block;
-            padding: 0.85rem 1.75rem; /* Slightly more padding */
-            border-radius: 0.75rem; /* More rounded */
-            font-weight: 700;
-            transition: all 0.3s ease-in-out;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-        .link-button-primary {
-            /* Changed to a dark slate blue */
-            background-color: #475569; /* Slate 700 */
-            color: #ffffff;
-            box-shadow: 0 4px 6px -1px rgba(71, 85, 105, 0.5), 0 2px 4px -1px rgba(71, 85, 105, 0.2);
-        }
-        .link-button-primary:hover {
-            /* Darker slate blue on hover */
-            background-color: #334155; /* Slate 800 */
-            transform: scale(1.05); /* Slight scale on hover */
-            box-shadow: 0 10px 15px -3px rgba(71, 85, 105, 0.6), 0 4px 6px -2px rgba(71, 85, 105, 0.3);
-        }
-        .link-button-secondary {
-            background-color: #6366f1; /* Indigo */
-            color: #ffffff;
-            box-shadow: 0 4px 6px -1px rgba(99, 102, 241, 0.5), 0 2px 4px -1px rgba(99, 102, 241, 0.2);
-        }
-        .link-button-secondary:hover {
-            background-color: #4f46e5; /* Darker indigo on hover */
-            transform: scale(1.05); /* Slight scale on hover */
-            box-shadow: 0 10px 15px -3px rgba(99, 102, 241, 0.6), 0 4px 6px -2px rgba(99, 102, 241, 0.3);
-        }
-        .link-button-mail { /* Changed to a vibrant teal */
-            background-color: #14b8a6; /* Teal 500 */
-            color: #ffffff;
-            box-shadow: 0 4px 6px -1px rgba(20, 184, 166, 0.5), 0 2px 4px -1px rgba(20, 184, 166, 0.2);
-        }
-        .link-button-mail:hover {
-            background-color: #0d9488; /* Darker teal on hover */
-            transform: scale(1.05);
-            box-shadow: 0 10px 15px -3px rgba(20, 184, 166, 0.6), 0 4px 6px -2px rgba(20, 184, 166, 0.3);
-        }
+        .link-button {
+            display: inline-block;
+            padding: 0.85rem 1.75rem; /* Slightly more padding */
+            border-radius: 0.75rem; /* More rounded */
+            font-weight: 700;
+            transition: all 0.3s ease-in-out;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .link-button-primary {
+            /* Changed to a dark slate blue */
+            background-color: #475569; /* Slate 700 */
+            color: #ffffff;
+            box-shadow: 0 4px 6px -1px rgba(71, 85, 105, 0.5), 0 2px 4px -1px rgba(71, 85, 105, 0.2);
+        }
+        .link-button-primary:hover {
+            /* Darker slate blue on hover */
+            background-color: #334155; /* Slate 800 */
+            transform: scale(1.05); /* Slight scale on hover */
+            box-shadow: 0 10px 15px -3px rgba(71, 85, 105, 0.6), 0 4px 6px -2px rgba(71, 85, 105, 0.3);
+        }
+        .link-button-secondary {
+            background-color: #6366f1; /* Indigo */
+            color: #ffffff;
+            box-shadow: 0 4px 6px -1px rgba(99, 102, 241, 0.5), 0 2px 4px -1px rgba(99, 102, 241, 0.2);
+        }
+        .link-button-secondary:hover {
+            background-color: #4f46e5; /* Darker indigo on hover */
+            transform: scale(1.05); /* Slight scale on hover */
+            box-shadow: 0 10px 15px -3px rgba(99, 102, 241, 0.6), 0 4px 6px -2px rgba(99, 102, 241, 0.3);
+        }
+        .link-button-mail { /* Changed to a vibrant teal */
+            background-color: #14b8a6; /* Teal 500 */
+            color: #ffffff;
+            box-shadow: 0 4px 6px -1px rgba(20, 184, 166, 0.5), 0 2px 4px -1px rgba(20, 184, 166, 0.2);
+        }
+        .link-button-mail:hover {
+            background-color: #0d9488; /* Darker teal on hover */
+            transform: scale(1.05);
+            box-shadow: 0 10px 15px -3px rgba(20, 184, 166, 0.6), 0 4px 6px -2px rgba(20, 184, 166, 0.3);
+        }
 
-        /* Company Logo Placeholder - Replaces profile avatar */
-        .company-logo {
-            width: 120px;
-            height: 120px;
-            background-color: #cbd5e1; /* Light gray for placeholder */
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.5rem; /* Smaller font for initials/logo */
-            color: #64748b;
-            border: 4px solid #ffffff; /* White border */
-            box-shadow: 0 0 0 8px rgba(255,255,255,0.3); /* Outer glow */
-            overflow: hidden;
-            font-family: 'Montserrat', sans-serif; /* For better looking initials */
-            font-weight: 900;
-        }
-        .company-logo img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 50%;
-        }
-    </style>
+        /* Company Logo Placeholder - Replaces profile avatar */
+        .company-logo {
+            width: 120px;
+            height: 120px;
+            background-color: #cbd5e1; /* Light gray for placeholder */
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem; /* Smaller font for initials/logo */
+            color: #64748b;
+            border: 4px solid #ffffff; /* White border */
+            box-shadow: 0 0 0 8px rgba(255,255,255,0.3); /* Outer glow */
+            overflow: hidden;
+            font-family: 'Montserrat', sans-serif; /* For better looking initials */
+            font-weight: 900;
+        }
+        .company-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+    </style>
 </head>
 <body class="antialiased leading-normal">
 
-    <div class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-        <div class="container-wrapper mx-auto p-8 sm:p-10 rounded-2xl">
+    <div class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+        <div class="container-wrapper mx-auto p-8 sm:p-10 rounded-2xl">
 
-            <header class="text-center mb-12 relative">
-                <div class="flex justify-center mb-6">
-                    <div class="company-logo">
-                        <img src="https://example.com/ruby-byte-logo.png" alt="Ruby Byte Logo" onerror="this.onerror=null;this.src='https://placehold.co/120x120/cbd5e1/64748b?text=RB';" />
-                    </div>
-                </div>
-                <h1 class="text-5xl sm:text-6xl font-extrabold text-gray-900 mb-3 section-title">Ruby Byte</h1>
-                <p class="text-xl sm:text-2xl text-gray-700">Innovative Software Solutions led by <span class="font-bold text-blue-700">Anjan Khand, Owner</span></p>
-                <div class="mt-8 flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
-                    <a href="https://www.linkedin.com/company/rubybyte/" target="_blank" rel="noopener noreferrer" class="link-button link-button-primary">
-                        Follow on LinkedIn
-                    </a>
-                    <a href="mailto:info@rubybyte.com" class="link-button link-button-mail">
-                        Contact Us
-                    </a>
-                </div>
-            </header>
+            <header class="text-center mb-12 relative">
+                <div class="flex justify-center mb-6">
+                    <div class="company-logo">
+                        <img src="https://example.com/ruby-byte-logo.png" alt="Ruby Byte Logo" onerror="this.onerror=null;this.src='https://placehold.co/120x120/cbd5e1/64748b?text=RB';" />
+                    </div>
+                </div>
+                <h1 class="text-5xl sm:text-6xl font-extrabold text-gray-900 mb-3 section-title">Ruby Byte</h1>
+                <p class="text-xl sm:text-2xl text-gray-700">Innovative Software Solutions led by <span class="font-bold text-blue-700"><a href="https://rubybyte.com/anjan-khand/" class="text-blue-700 hover:underline">Anjan Khand</a>, Owner</span></p>
+                <div class="mt-8 flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+                    <a href="https://www.linkedin.com/company/rubybyte/" target="_blank" rel="noopener noreferrer" class="link-button link-button-primary">
+                        Follow on LinkedIn
+                    </a>
+                    <a href="mailto:info@rubybyte.com" class="link-button link-button-mail">
+                        Contact Us
+                    </a>
+                </div>
+            </header>
 
-            <section class="mb-12 p-8 rounded-xl bg-gray-50 card">
-                <h2 class="section-title text-3xl sm:text-4xl mb-5 pb-4 border-b border-gray-200">About Ruby Byte</h2>
-                <p class="text-lg text-gray-700 leading-relaxed">
-                    At **Ruby Byte**, we are a pioneering software tech company specializing in creating robust, scalable, and visually compelling applications. Led by **Anjan Khand**, our passion lies in leveraging cutting-edge technologies to develop innovative solutions that drive business growth and enhance user experiences. We are dedicated to pushing creative boundaries, delivering exceptional quality, and transforming complex challenges into elegant, functional software.
-                </p>
-            </section>
+            <section class="mb-12 p-8 rounded-xl bg-gray-50 card">
+                <h2 class="section-title text-3xl sm:text-4xl mb-5 pb-4 border-b border-gray-200">About Ruby Byte</h2>
+                <p class="text-lg text-gray-700 leading-relaxed">
+                    At **Ruby Byte**, we are a pioneering software tech company specializing in creating robust, scalable, and visually compelling applications. Led by **<a href="https://rubybyte.com/anjan-khand/" class="text-blue-600 hover:underline">Anjan Khand</a>**, our passion lies in leveraging cutting-edge technologies to develop innovative solutions that drive business growth and enhance user experiences. We are dedicated to pushing creative boundaries, delivering exceptional quality, and transforming complex challenges into elegant, functional software.
+                </p>
+            </section>
 
-            <section class="mb-12 p-8 rounded-xl bg-gray-50 card">
-                <h2 class="section-title text-3xl sm:text-4xl mb-5 pb-4 border-b border-gray-200">Technologies We Master</h2>
-                <ul class="list-disc list-inside text-lg text-gray-700 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-2 gap-x-6">
-                    <li>Flutter</li>
-                    <li>Java</li>
-                    <li>Swift</li>
-                    <li>JavaScript</li>
-                    <li>Django</li>
-                    <li>Supabase</li>
-                    <li>Firebase</li>
-                    <li>AWS</li>
-                    <li>Hugging Face</li>
-                    <li>Graphics Development</li>
-                    <li>Mobile App Development</li>
-                    <li>Cloud Solutions</li>
-                </ul>
-            </section>
+            <section class="mb-12 p-8 rounded-xl bg-gray-50 card">
+                <h2 class="section-title text-3xl sm:text-4xl mb-5 pb-4 border-b border-gray-200">Technologies We Master</h2>
+                <ul class="list-disc list-inside text-lg text-gray-700 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-2 gap-x-6">
+                    <li>Flutter</li>
+                    <li>Java</li>
+                    <li>Swift</li>
+                    <li>JavaScript</li>
+                    <li>Django</li>
+                    <li>Supabase</li>
+                    <li>Firebase</li>
+                    <li>AWS</li>
+                    <li>Hugging Face</li>
+                    <li>Graphics Development</li>
+                    <li>Mobile App Development</li>
+                    <li>Cloud Solutions</li>
+                </ul>
+            </section>
 
-            <section class="mb-12 p-8 rounded-xl bg-gray-50 card">
-                <h2 class="section-title text-3xl sm:text-4xl mb-6 pb-4 border-b border-gray-200">Our Flagship Products</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <section class="mb-12 p-8 rounded-xl bg-gray-50 card">
+                <h2 class="section-title text-3xl sm:text-4xl mb-6 pb-4 border-b border-gray-200">Our Flagship Products</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
 
-                    <div class="bg-white p-6 rounded-lg card">
-                        <h3 class="text-xl font-semibold text-gray-800 mb-3">Happy Birthday Templates Editor</h3>
-                        <p class="text-gray-600 mb-4">
-                            An intuitive application for crafting personalized happy birthday templates, messages, statuses, and captions for friends, family, and loved ones.
-                        </p>
-                        <a href="https://play.google.com/store/apps/details?id=birthday.wishes.birthday.message.status.caption.baby.child.friend.family.best.good.birthday.wishes.birthday_wishes" target="_blank" rel="noopener noreferrer" class="link-button link-button-secondary">
-                            View Product
-                        </a>
-                    </div>
+                    <div class="bg-white p-6 rounded-lg card">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-3">Happy Birthday Templates Editor</h3>
+                        <p class="text-gray-600 mb-4">
+                            An intuitive application for crafting personalized happy birthday templates, messages, statuses, and captions for friends, family, and loved ones.
+                        </p>
+                        <a href="https://play.google.com/store/apps/details?id=birthday.wishes.birthday.message.status.caption.baby.child.friend.family.best.good.birthday.wishes.birthday_wishes" target="_blank" rel="noopener noreferrer" class="link-button link-button-secondary">
+                            View Product
+                        </a>
+                    </div>
 
-                    <div class="bg-white p-6 rounded-lg card">
-                        <h3 class="text-xl font-semibold text-gray-800 mb-3">Jhandi-Munda</h3>
-                        <p class="text-gray-600 mb-4">
-                            A faithful digital recreation of the traditional Nepali dice game, Jhandi Munda (also known as Langur Burja or Crown and Anchor), offering a fun and engaging experience.
-                        </p>
-                        <a href="https://play.google.com/store/apps/details?id=jhandi.munda.langur.burja.jhandi.burja.jhandi_burja" target="_blank" rel="noopener noreferrer" class="link-button link-button-secondary">
-                            View Product
-                        </a>
-                    </div>
+                    <div class="bg-white p-6 rounded-lg card">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-3">Jhandi-Munda</h3>
+                        <p class="text-gray-600 mb-4">
+                            A faithful digital recreation of the traditional Nepali dice game, Jhandi Munda (also known as Langur Burja or Crown and Anchor), offering a fun and engaging experience.
+                        </p>
+                        <a href="https://play.google.com/store/apps/details?id=jhandi.munda.langur.burja.jhandi.burja.jhandi_burja" target="_blank" rel="noopener noreferrer" class="link-button link-button-secondary">
+                            View Product
+                        </a>
+                    </div>
 
-                    <div class="bg-white p-6 rounded-lg card">
-                        <h3 class="text-xl font-semibold text-gray-800 mb-3">CV Maker</h3>
-                        <p class="text-gray-600 mb-4">
-                            A straightforward utility application designed to help users generate professional and well-formatted CVs quickly and effortlessly.
-                        </p>
-                        <a href="https://play.google.com/store/apps/details?id=com.alphaK.my_info" target="_blank" rel="noopener noreferrer" class="link-button link-button-secondary">
-                            View Product
-                        </a>
-                    </div>
+                    <div class="bg-white p-6 rounded-lg card">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-3">CV Maker</h3>
+                        <p class="text-gray-600 mb-4">
+                            A straightforward utility application designed to help users generate professional and well-formatted CVs quickly and effortlessly.
+                        </p>
+                        <a href="https://play.google.com/store/apps/details?id=com.alphaK.my_info" target="_blank" rel="noopener noreferrer" class="link-button link-button-secondary">
+                            View Product
+                        </a>
+                    </div>
 
-                    <div class="bg-white p-6 rounded-lg card">
-                        <h3 class="text-xl font-semibold text-gray-800 mb-3">Color Blind Test</h3>
-                        <p class="text-gray-600 mb-4">
-                            An application providing a simple yet effective way for users to perform basic color blindness tests, offering quick assessments of color vision.
-                        </p>
-                        <a href="https://play.google.com/store/apps/details?id=com.alphak.color_vision" target="_blank" rel="noopener noreferrer" class="link-button link-button-secondary">
-                            View Product
-                        </a>
-                    </div>
+                    <div class="bg-white p-6 rounded-lg card">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-3">Color Blind Test</h3>
+                        <p class="text-gray-600 mb-4">
+                            An application providing a simple yet effective way for users to perform basic color blindness tests, offering quick assessments of color vision.
+                        </p>
+                        <a href="https://play.google.com/store/apps/details?id=com.alphak.color_vision" target="_blank" rel="noopener noreferrer" class="link-button link-button-secondary">
+                            View Product
+                        </a>
+                    </div>
 
-                </div>
-            </section>
+                </div>
+            </section>
 
-            <section class="mb-12 p-8 rounded-xl bg-gray-50 card">
-                <h2 class="section-title text-3xl sm:text-4xl mb-6 pb-4 border-b border-gray-200">Our Contributions & Client Solutions</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <footer class="text-center text-gray-600 text-sm mt-10 pt-4 border-t border-gray-200">
+                <p>&copy; 2025 Ruby Byte. All rights reserved.</p>
+                <p>Owned and Operated by <a href="https://rubybyte.com/anjan-khand/" class="text-gray-600 hover:underline">Anjan Khand</a>.</p>
+            </footer>
 
-                    <div class="bg-white p-6 rounded-lg card">
-                        <h3 class="text-xl font-semibold text-gray-800 mb-3">Passport Size Photo Maker (Android)</h3>
-                        <p class="text-gray-600 mb-4">
-                            An efficient tool for creating passport and ID photos with various size and country specific options, ensuring compliance for official documents.
-                        </p>
-                        <a href="https://play.google.com/store/apps/details?id=np.com.njs.autophotos&hl=en" target="_blank" rel="noopener noreferrer" class="link-button link-button-secondary">
-                            Explore Solution
-                        </a>
-                    </div>
-
-                    <div class="bg-white p-6 rounded-lg card">
-                        <h3 class="text-xl font-semibold text-gray-800 mb-3">US Photo ID Maker (iOS)</h3>
-                        <p class="text-gray-600 mb-4">
-                            Specifically designed for creating US passport and ID photos, adhering to strict official requirements, available on iOS.
-                        </p>
-                        <a href="https://apps.apple.com/us/app/us-photo-id-maker/id6469270943" target="_blank" rel="noopener noreferrer" class="link-button link-button-secondary">
-                            Explore Solution
-                        </a>
-                    </div>
-
-                    <div class="bg-white p-6 rounded-lg card">
-                        <h3 class="text-xl font-semibold text-gray-800 mb-3">Passport Photo ID Photo App (iOS)</h3>
-                        <p class="text-gray-600 mb-4">
-                            A comprehensive iOS application for generating passport and ID photos for various countries, offering a user-friendly experience.
-                        </p>
-                        <a href="https://apps.apple.com/us/app/passport-photo-id-photo-app/id1294190634" target="_blank" rel="noopener noreferrer" class="link-button link-button-secondary">
-                            Explore Solution
-                        </a>
-                    </div>
-
-                </div>
-            </section>
-
-            <footer class="text-center text-gray-600 text-sm mt-10 pt-4 border-t border-gray-200">
-                <p>&copy; 2025 Ruby Byte. All rights reserved.</p>
-                <p>Owned and Operated by Anjan Khand.</p>
-            </footer>
-
-        </div>
-    </div>
+        </div>
+    </div>
 
 </body>
 </html>
