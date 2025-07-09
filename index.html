@@ -24,7 +24,7 @@
             font-family: 'Montserrat', sans-serif;
             color: #1a202c; /* Gray 900 - Very dark for strong titles */
             font-weight: 800; /* Extra bold */
-            border-bottom: 3px solid #6366f1; /* More prominent, primary color line */
+            border-bottom: 3px solid #0D5EA6; /* Primary color line */
             padding-bottom: 1.25rem;
             margin-bottom: 2rem;
             display: inline-block; /* To make border-bottom fit content */
@@ -49,11 +49,11 @@
         }
 
         .link-button-primary {
-            --tw-gradient-stops: #4f46e5, #6366f1; /* Indigo 600 to 500 */
+            --tw-gradient-stops: #0D5EA6, #1A6EB9; /* Primary color and a slightly lighter shade */
             color: #ffffff;
         }
         .link-button-primary:hover {
-            --tw-gradient-stops: #3730a3, #4f46e5; /* Indigo 800 to 600 */
+            --tw-gradient-stops: #0A4D8C, #0D5EA6; /* Darker primary for hover */
         }
 
         .link-button-mail {
@@ -76,7 +76,7 @@
         .company-logo {
             width: 160px; /* Even larger logo */
             height: 160px;
-            background-color: #6366f1; /* Primary color for placeholder */
+            background-color: #0D5EA6; /* Primary color for placeholder */
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -84,7 +84,7 @@
             font-size: 3.5rem; /* Larger font for initials */
             color: #ffffff;
             border: 6px solid #ffffff; /* Thicker white border */
-            box-shadow: 0 0 0 12px rgba(99, 102, 241, 0.2), 0 0 0 20px rgba(99, 102, 241, 0.1); /* Layered outer glow */
+            box-shadow: 0 0 0 12px rgba(13, 94, 166, 0.2), 0 0 0 20px rgba(13, 94, 166, 0.1); /* Layered outer glow */
             overflow: hidden;
             font-family: 'Montserrat', sans-serif;
             font-weight: 900;
@@ -109,6 +109,24 @@
             transform: translateY(-5px); /* More noticeable lift */
             box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.15), 0 8px 15px -5px rgba(0, 0, 0, 0.08);
         }
+
+        /* Specific color updates for elements */
+        .text-indigo-700 { /* This class is used for the "Innovative Software Solutions" text and "Anjan Khand" link */
+            color: #0D5EA6; /* Primary color */
+        }
+        .text-blue-600 { /* This class is used for the email and LinkedIn links in Contact Us */
+            color: #0D5EA6; /* Primary color */
+        }
+        .text-indigo-500 { /* This class is used for the SVG icons in Contact Us */
+            color: #0D5EA6; /* Primary color */
+        }
+        .border-indigo-200 { /* Used for founder's image border */
+            border-color: #A9D1EF; /* A lighter shade of the primary color */
+        }
+        .bg-gradient-to-br.from-indigo-50.to-blue-100 { /* Background gradient */
+            background: linear-gradient(to bottom right, #EAF3FA, #D2E4F4); /* Lighter, related background */
+        }
+
     </style>
 </head>
 <body class="antialiased leading-normal">
@@ -119,15 +137,15 @@
             <header class="mb-16 relative flex flex-col items-center text-center sm:flex-row sm:text-left sm:items-center">
                 <div class="flex-shrink-0 mb-8 sm:mb-0 sm:mr-12">
                     <div class="company-logo">
-                        <img src="https://example.com/ruby-byte-logo.png" alt="Ruby Byte Logo" onerror="this.onerror=null;this.src='https://placehold.co/160x160/6366f1/ffffff?text=RB';" />
+                        <img src="https://example.com/ruby-byte-logo.png" alt="Ruby Byte Logo" onerror="this.onerror=null;this.src='https://placehold.co/160x160/0D5EA6/ffffff?text=RB';" />
                     </div>
                 </div>
                 <div class="flex flex-col items-center sm:items-start flex-grow">
                     <h1 class="text-6xl sm:text-7xl lg:text-8xl font-extrabold text-gray-900 mb-4 section-title border-none pb-0 inline-block">Ruby Byte</h1>
-                    <p class="text-l sm:text-2xl text-gray-600 font-light leading-relaxed max-w-2xl mx-auto sm:mx-0">
+                    <p class="text-xl sm:text-2xl text-gray-600 font-light leading-relaxed max-w-2xl mx-auto sm:mx-0">
                         Crafting <span class="font-semibold text-indigo-700">Innovative Software Solutions</span> that Drive Growth and Enhance Experiences.
                     </p>
-                </div>
+                    </div>
             </header>
 
             ---
@@ -146,7 +164,7 @@
                 <div class="space-y-6">
                     <div class="flex items-center space-x-6">
                         <div class="flex-shrink-0">
-                            <img class="h-24 w-24 rounded-full object-cover shadow-lg border-4 border-indigo-200" src="https://placehold.co/96x96/6366f1/ffffff?text=AK" alt="Anjan Khand">
+                            <img class="h-24 w-24 rounded-full object-cover shadow-lg border-4 border-indigo-200" src="https://placehold.co/96x96/0D5EA6/ffffff?text=AK" alt="Anjan Khand">
                         </div>
                         <div>
                             <h3 class="text-2xl font-bold text-gray-900"><a href="https://rubybyte.com/anjan-khand/" class="text-indigo-700 hover:underline">Anjan Khand</a></h3>
