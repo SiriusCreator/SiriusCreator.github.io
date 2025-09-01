@@ -6,8 +6,8 @@
     <title>Anjan Khand - Mobile App Developer</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Inter and Montserrat for a modern feel -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+    <!-- Google Fonts: Inter, Montserrat, and Roboto for buttons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Montserrat:wght@700;800;900&family=Roboto:wght@500&display=swap" rel="stylesheet">
     <style>
         body {
             background: linear-gradient(to right bottom, #e0e7ff, #c3daff, #a7c0ff);
@@ -47,7 +47,8 @@
         }
 
         .link-button {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
             padding: 0.85rem 1.75rem;
             border-radius: 0.75rem;
             font-weight: 700;
@@ -66,14 +67,44 @@
             box-shadow: 0 10px 15px -3px rgba(71, 85, 105, 0.6), 0 4px 6px -2px rgba(71, 85, 105, 0.3);
         }
         .link-button-secondary {
-            background-color: #6366f1;
-            color: #ffffff;
-            box-shadow: 0 4px 6px -1px rgba(99, 102, 241, 0.5), 0 2px 4px -1px rgba(99, 102, 241, 0.2);
+            font-family: 'Roboto', sans-serif;
+            font-size: 0.875rem;
+            font-weight: 500;
+            border-radius: 0.5rem;
+            padding: 0.5rem 1rem 0.5rem 0.75rem;
+            display: inline-flex;
+            align-items: center;
+            transition: all 0.3s ease-in-out;
         }
-        .link-button-secondary:hover {
-            background-color: #4f46e5;
+        .link-button-secondary.play-store {
+            background: linear-gradient(90deg, #000000 0%, #333333 100%);
+            color: #ffffff;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+        }
+        .link-button-secondary.play-store img {
+            width: 1.25rem;
+            height: 1.25rem;
+            margin-right: 0.5rem;
+        }
+        .link-button-secondary.play-store:hover {
+            background: linear-gradient(90deg, #1a1a1a 0%, #4d4d4d 100%);
             transform: scale(1.05);
-            box-shadow: 0 10px 15px -3px rgba(99, 102, 241, 0.6), 0 4px 6px -2px rgba(99, 102, 241, 0.3);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.6), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
+        }
+        .link-button-secondary.apple-store {
+            background: #000000;
+            color: #ffffff;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+        }
+        .link-button-secondary.apple-store img {
+            width: 1.25rem;
+            height: 1.25rem;
+            margin-right: 0.5rem;
+        }
+        .link-button-secondary.apple-store:hover {
+            background: #1a1a1a;
+            transform: scale(1.05);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.6), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
         }
         .link-button-mail {
             background-color: #14b8a6;
@@ -168,10 +199,12 @@
                             An intuitive application for crafting personalized happy birthday templates, messages, statuses, and captions for friends, family, and loved ones.
                         </p>
                         <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-                            <a href="https://play.google.com/store/apps/details?id=birthday.wishes.birthday.message.status.caption.baby.child.friend.family.best.good.birthday.wishes.birthday_wishes" target="_blank" rel="noopener noreferrer" class="link-button link-button-secondary">
+                            <a href="https://play.google.com/store/apps/details?id=birthday.wishes.birthday.message.status.caption.baby.child.friend.family.best.good.birthday.wishes.birthday_wishes" target="_blank" rel="noopener noreferrer" class="link-button link-button-secondary play-store">
+                                <img src="https://siriuscreator.github.io/google-play.png" alt="Google Play Icon" />
                                 Play Store
                             </a>
-                            <a href="https://apps.apple.com/np/app/birthday-card-maker-wishes/id6748813997" target="_blank" rel="noopener noreferrer" class="link-button link-button-secondary">
+                            <a href="https://apps.apple.com/np/app/birthday-card-maker-wishes/id6748813997" target="_blank" rel="noopener noreferrer" class="link-button link-button-secondary apple-store">
+                                <img src="https://siriuscreator.github.io/apple.png" alt="Apple Store Icon" />
                                 Apple Store
                             </a>
                         </div>
@@ -183,8 +216,9 @@
                         <p class="text-gray-600 mb-4">
                             A faithful digital recreation of the traditional Nepali dice game, Jhandi Munda (also known as Langur Burja or Crown and Anchor), offering a fun and engaging experience.
                         </p>
-                        <a href="https://play.google.com/store/apps/details?id=jhandi.munda.langur.burja.jhandi.burja.jhandi_burja" target="_blank" rel="noopener noreferrer" class="link-button link-button-secondary">
-                          Play Store
+                        <a href="https://play.google.com/store/apps/details?id=jhandi.munda.langur.burja.jhandi.burja.jhandi_burja" target="_blank" rel="noopener noreferrer" class="link-button link-button-secondary play-store">
+                            <img src="https://siriuscreator.github.io/google-play.png" alt="Google Play Icon" />
+                            Play Store
                         </a>
                     </div>
 
@@ -194,8 +228,9 @@
                         <p class="text-gray-600 mb-4">
                             A straightforward utility application designed to help users generate professional and well-formatted CVs quickly and effortlessly.
                         </p>
-                        <a href="https://play.google.com/store/apps/details?id=com.alphaK.my_info" target="_blank" rel="noopener noreferrer" class="link-button link-button-secondary">
-                           Play Store
+                        <a href="https://play.google.com/store/apps/details?id=com.alphaK.my_info" target="_blank" rel="noopener noreferrer" class="link-button link-button-secondary play-store">
+                            <img src="https://siriuscreator.github.io/google-play.png" alt="Google Play Icon" />
+                            Play Store
                         </a>
                     </div>
 
@@ -205,8 +240,9 @@
                         <p class="text-gray-600 mb-4">
                             An application providing a simple yet effective way for users to perform basic color blindness tests, offering quick assessments of color vision.
                         </p>
-                        <a href="https://play.google.com/store/apps/details?id=com.alphak.color_vision" target="_blank" rel="noopener noreferrer" class="link-button link-button-secondary">
-                           Play Store
+                        <a href="https://play.google.com/store/apps/details?id=com.alphak.color_vision" target="_blank" rel="noopener noreferrer" class="link-button link-button-secondary play-store">
+                            <img src="https://siriuscreator.github.io/google-play.png" alt="Google Play Icon" />
+                            Play Store
                         </a>
                     </div>
 
@@ -224,7 +260,8 @@
                         <p class="text-gray-600 mb-4">
                             An efficient tool for creating passport and ID photos with various size and country specific options, ensuring compliance for official documents.
                         </p>
-                        <a href="https://play.google.com/store/apps/details?id=np.com.njs.autophotos&hl=en" target="_blank" rel="noopener noreferrer" class="link-button link-button-secondary">
+                        <a href="https://play.google.com/store/apps/details?id=np.com.njs.autophotos&hl=en" target="_blank" rel="noopener noreferrer" class="link-button link-button-secondary play-store">
+                            <img src="https://siriuscreator.github.io/google-play.png" alt="Google Play Icon" />
                             Play Store
                         </a>
                     </div>
@@ -235,8 +272,9 @@
                         <p class="text-gray-600 mb-4">
                             Specifically designed for creating US passport and ID photos, adhering to strict official requirements, available on iOS.
                         </p>
-                        <a href="https://apps.apple.com/us/app/us-photo-id-maker/id6469270943" target="_blank" rel="noopener noreferrer" class="link-button link-button-secondary">
-                           Apple Store
+                        <a href="https://apps.apple.com/us/app/us-photo-id-maker/id6469270943" target="_blank" rel="noopener noreferrer" class="link-button link-button-secondary apple-store">
+                            <img src="https://siriuscreator.github.io/apple.png" alt="Apple Store Icon" />
+                            Apple Store
                         </a>
                     </div>
 
@@ -246,7 +284,8 @@
                         <p class="text-gray-600 mb-4">
                             A comprehensive iOS application for generating passport and ID photos for various countries, offering a user-friendly experience.
                         </p>
-                        <a href="https://apps.apple.com/us/app/passport-photo-id-photo-app/id1294190634" target="_blank" rel="noopener noreferrer" class="link-button link-button-secondary">
+                        <a href="https://apps.apple.com/us/app/passport-photo-id-photo-app/id1294190634" target="_blank" rel="noopener noreferrer" class="link-button link-button-secondary apple-store">
+                            <img src="https://siriuscreator.github.io/apple.png" alt="Apple Store Icon" />
                             Apple Store
                         </a>
                     </div>
@@ -264,6 +303,3 @@
 
 </body>
 </html>
-
-
-
