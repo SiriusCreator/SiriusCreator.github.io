@@ -3,173 +3,116 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfolio of Anjan Khand, a Software Developer specializing in Mobile Apps using Flutter, Java, and Swift.">
     <title>Anjan Khand - Mobile App Developer Flutter</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Montserrat:wght@700;800;900&family=Roboto:wght@500&display=swap" rel="stylesheet">
-    <style>
-        body {
-            background: linear-gradient(to right bottom, #e0e7ff, #c3daff, #a7c0ff);
-            background-size: 400% 400%;
-            animation: gradientAnimation 20s ease infinite;
-            font-family: 'Inter', sans-serif;
-            color: #374151;
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Montserrat', 'sans-serif'],
+                        button: ['Roboto', 'sans-serif'],
+                    },
+                    animation: {
+                        'gradient-bg': 'gradient 20s ease infinite',
+                    },
+                    keyframes: {
+                        gradient: {
+                            '0%, 100%': { backgroundPosition: '0% 50%' },
+                            '50%': { backgroundPosition: '100% 50%' },
+                        }
+                    },
+                    backgroundSize: {
+                        '400%': '400% 400%',
+                    }
+                }
+            }
         }
+    </script>
 
-        @keyframes gradientAnimation {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        .container-wrapper {
-            background-color: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(8px);
-            border-radius: 1.5rem;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-        }
-
-        .section-title {
-            font-family: 'Montserrat', sans-serif;
-            color: #1f2937;
-            font-weight: 800;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-        }
-        .card {
-            background-color: #ffffff;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease-in-out;
-        }
-        .card:hover {
-            transform: translateY(-5px) scale(1.02);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 10px 10px -5px rgba(0, 0, 0, 0.08);
-        }
-
-        .link-button {
-            display: inline-flex;
-            align-items: center;
-            padding: 0.85rem 1.75rem;
-            border-radius: 0.75rem;
-            font-weight: 700;
-            transition: all 0.3s ease-in-out;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-        .link-button-primary {
-            background-color: #475569;
-            color: #ffffff;
-            box-shadow: 0 4px 6px -1px rgba(71, 85, 105, 0.5), 0 2px 4px -1px rgba(71, 85, 105, 0.2);
-        }
-        .link-button-primary:hover {
-            background-color: #334155;
-            transform: scale(1.05);
-            box-shadow: 0 10px 15px -3px rgba(71, 85, 105, 0.6), 0 4px 6px -2px rgba(71, 85, 105, 0.3);
-        }
-        .link-button-secondary {
-            font-family: 'Roboto', sans-serif;
-            font-size: 0.875rem;
-            font-weight: 500;
-            border-radius: 0.5rem;
-            padding: 0.75rem 1.25rem 0.75rem 1rem;
-            display: inline-flex;
-            align-items: center;
-            transition: all 0.3s ease-in-out;
-        }
-        .link-button-secondary.play-store {
-            background: linear-gradient(90deg, #000000 0%, #333333 100%);
-            color: #ffffff;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
-        }
-        .link-button-secondary.play-store img {
-            width: 1.5rem;
-            height: 1.5rem;
-            margin-right: 0.75rem;
-        }
-        .link-button-secondary.play-store:hover {
-            background: linear-gradient(90deg, #1a1a1a 0%, #4d4d4d 100%);
-            transform: scale(1.05);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.6), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
-        }
-        .link-button-secondary.apple-store {
-            background: #000000;
-            color: #ffffff;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
-        }
-        .link-button-secondary.apple-store img {
-            width: 1.5rem;
-            height: 1.5rem;
-            margin-right: 0.75rem;
-        }
-        .link-button-secondary.apple-store:hover {
-            background: #1a1a1a;
-            transform: scale(1.05);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.6), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
-        }
-        .link-button-mail {
-            background-color: #14b8a6;
-            color: #ffffff;
-            box-shadow: 0 4px 6px -1px rgba(20, 184, 166, 0.5), 0 2px 4px -1px rgba(20, 184, 166, 0.2);
-        }
-        .link-button-mail:hover {
-            background-color: #0d9488;
-            transform: scale(1.05);
-            box-shadow: 0 10px 15px -3px rgba(20, 184, 166, 0.6), 0 4px 6px -2px rgba(20, 184, 166, 0.3);
-        }
-
-        .profile-avatar {
-            width: 120px;
-            height: 120px;
-            background-color: #cbd5e1;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            color: #64748b;
-            border: 4px solid #ffffff;
-            box-shadow: 0 0 0 8px rgba(255,255,255,0.3);
-            overflow: hidden;
-        }
-        .profile-avatar img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 50%;
+    <!-- Custom Tailwind Components -->
+    <style type="text/tailwindcss">
+        @layer components {
+            .glass-container {
+                @apply bg-white/95 backdrop-blur-md rounded-3xl shadow-2xl w-full max-w-5xl mx-auto p-8 sm:p-12;
+            }
+            .section-title {
+                @apply font-heading text-gray-900 font-extrabold drop-shadow-sm;
+            }
+            .content-card {
+                @apply bg-white p-6 rounded-xl shadow-md transition-all duration-300 ease-in-out hover:-translate-y-1 hover:scale-[1.02] hover:shadow-xl;
+            }
+            
+            /* Buttons */
+            .btn {
+                @apply inline-flex items-center transition-all duration-300 ease-in-out shadow-md hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-4 focus:ring-opacity-50;
+            }
+            .btn-primary {
+                @apply btn px-7 py-3 bg-slate-600 text-white font-bold rounded-xl uppercase tracking-wide hover:bg-slate-700 focus:ring-slate-400;
+            }
+            .btn-mail {
+                @apply btn px-7 py-3 bg-teal-500 text-white font-bold rounded-xl uppercase tracking-wide hover:bg-teal-600 focus:ring-teal-300;
+            }
+            .btn-store {
+                @apply btn font-button text-sm font-medium rounded-lg py-3 px-4 pr-5 text-white;
+            }
+            .btn-play-store {
+                @apply btn-store bg-gradient-to-r from-black to-neutral-800 hover:from-neutral-900 hover:to-neutral-600 focus:ring-neutral-500;
+            }
+            .btn-apple-store {
+                @apply btn-store bg-black hover:bg-neutral-900 focus:ring-neutral-500;
+            }
         }
     </style>
 </head>
-<body class="antialiased leading-normal">
+<body class="antialiased leading-normal text-gray-700 font-sans bg-gradient-to-br from-indigo-100 via-blue-200 to-indigo-300 bg-400% animate-gradient-bg selection:bg-blue-300 selection:text-blue-900">
 
-    <div class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-        <div class="container-wrapper mx-auto p-8 sm:p-10 rounded-2xl">
+    <main class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+        <article class="glass-container">
 
-            <header class="text-center mb-12 relative">
+            <!-- Header Section -->
+            <header class="text-center mb-16">
                 <div class="flex justify-center mb-6">
-                    <div class="profile-avatar">
-                        <img src="https://siriuscreator.github.io/anjan.jpg" alt="Anjan Khand Profile Picture" onerror="this.onerror=null;this.src='https://placehold.co/120x120/cbd5e1/64748b?text=AK';" />
+                    <div class="w-32 h-32 bg-slate-300 rounded-full flex items-center justify-center text-5xl text-slate-500 border-4 border-white shadow-[0_0_0_8px_rgba(255,255,255,0.3)] overflow-hidden">
+                        <img src="https://siriuscreator.github.io/anjan.jpg" alt="Anjan Khand" class="w-full h-full object-cover" onerror="this.onerror=null;this.src='https://placehold.co/120x120/cbd5e1/64748b?text=AK';" />
                     </div>
                 </div>
-                <h1 class="text-5xl sm:text-6xl font-extrabold text-gray-900 mb-3 section-title">Anjan Khand</h1>
-                <p class="text-xl sm:text-2xl text-gray-700">Software Developer specializing in <span class="font-bold text-blue-700">Mobile App</span></p>
-                <div class="mt-8 flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
-                    <a href="https://www.linkedin.com/in/anjan-khand-thakuri/" target="_blank" rel="noopener noreferrer" class="link-button link-button-primary">
+                <h1 class="text-5xl sm:text-6xl section-title mb-3">Anjan Khand</h1>
+                <p class="text-xl sm:text-2xl text-gray-700">Software Developer specializing in <span class="font-bold text-blue-700">Mobile Apps</span></p>
+                
+                <nav class="mt-8 flex flex-col sm:flex-row justify-center gap-4" aria-label="Contact links">
+                    <a href="https://www.linkedin.com/in/anjan-khand-thakuri/" target="_blank" rel="noopener noreferrer" class="btn-primary">
                         Connect on LinkedIn
                     </a>
-                    <a href="mailto:siriuscreator999@gmail.com" class="link-button link-button-mail">
+                    <a href="mailto:siriuscreator999@gmail.com" class="btn-mail">
                         Send Email
                     </a>
-                </div>
+                </nav>
             </header>
 
-            <section class="mb-12 p-8 rounded-xl bg-gray-50 card">
+            <!-- About Section -->
+            <section class="mb-12 p-8 rounded-2xl bg-gray-50/80 shadow-sm border border-gray-100">
                 <h2 class="section-title text-3xl sm:text-4xl mb-5 pb-4 border-b border-gray-200">About Me</h2>
                 <p class="text-lg text-gray-700 leading-relaxed">
-                    I am a dedicated software developer with a strong passion for <span class="font-semibold text-blue-600">mobile apps</span> and visual computing. My expertise spans across various technologies, allowing me to build robust and visually appealing applications that push creative boundaries. I thrive on crafting engaging user experiences, particularly those that involve intricate graphical interfaces, real-time rendering, and interactive designs. My journey in software development is driven by a desire to bring artistic vision to life through code.
+                    I am a dedicated software developer with a strong passion for <strong class="text-blue-600">mobile apps</strong> and visual computing. My expertise spans across various technologies, allowing me to build robust and visually appealing applications that push creative boundaries. I thrive on crafting engaging user experiences, particularly those that involve intricate graphical interfaces, real-time rendering, and interactive designs. My journey in software development is driven by a desire to bring artistic vision to life through code.
                 </p>
             </section>
 
-            <section class="mb-12 p-8 rounded-xl bg-gray-50 card">
+            <!-- Technologies Section -->
+            <section class="mb-12 p-8 rounded-2xl bg-gray-50/80 shadow-sm border border-gray-100">
                 <h2 class="section-title text-3xl sm:text-4xl mb-5 pb-4 border-b border-gray-200">Technologies I Use</h2>
-                <ul class="list-disc list-inside text-lg text-gray-700 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-2 gap-x-6">
+                <ul class="list-disc list-inside text-lg text-gray-700 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-y-3 gap-x-6 marker:text-blue-500">
                     <li>Flutter</li>
                     <li>Java</li>
                     <li>Swift</li>
@@ -178,120 +121,126 @@
                     <li>Django</li>
                     <li>Supabase</li>
                     <li>Firebase</li>
-                    <li>Rest API</li>
+                    <li>REST API</li>
                     <li>JSON</li>
                     <li>AWS</li>
                     <li>Hugging Face</li>
                 </ul>
             </section>
 
-            <section class="mb-12 p-8 rounded-xl bg-gray-50 card">
-                <h2 class="section-title text-3xl sm:text-4xl mb-6 pb-4 border-b border-gray-200">Founded Product</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Founded Products Section -->
+            <section class="mb-12 p-8 rounded-2xl bg-gray-50/80 shadow-sm border border-gray-100">
+                <h2 class="section-title text-3xl sm:text-4xl mb-6 pb-4 border-b border-gray-200">Founded Products</h2>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
 
-                    <div class="bg-white p-6 rounded-lg card">
-                        <h3 class="text-xl font-semibold text-gray-800 mb-3">Happy Birthday Templates Editor</h3>
-                        <p class="text-gray-600 mb-4">
+                    <!-- Product 1 -->
+                    <div class="content-card flex flex-col h-full">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Happy Birthday Templates Editor</h3>
+                        <p class="text-gray-600 mb-6 flex-grow">
                             An intuitive application for crafting personalized happy birthday templates, messages, statuses, and captions for friends, family, and loved ones.
                         </p>
-                        <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-                            <a href="https://play.google.com/store/apps/details?id=birthday.wishes.birthday.message.status.caption.baby.child.friend.family.best.good.birthday.wishes.birthday_wishes" target="_blank" rel="noopener noreferrer" class="link-button link-button-secondary play-store">
-                                <img src="https://siriuscreator.github.io/google-play.png" alt="Google Play Icon" />
+                        <div class="flex flex-wrap gap-3 mt-auto">
+                            <a href="https://play.google.com/store/apps/details?id=birthday.wishes..." target="_blank" rel="noopener noreferrer" class="btn-play-store">
+                                <img src="https://siriuscreator.github.io/google-play.png" alt="" aria-hidden="true" class="w-5 h-5 mr-2" />
                                 Play Store
                             </a>
-                            <a href="https://apps.apple.com/np/app/birthday-card-maker-wishes/id6748813997" target="_blank" rel="noopener noreferrer" class="link-button link-button-secondary apple-store">
-                                <img src="https://siriuscreator.github.io/apple.png" alt="App Store Icon" />
+                            <a href="https://apps.apple.com/np/app/birthday-card-maker-wishes/id6748813997" target="_blank" rel="noopener noreferrer" class="btn-apple-store">
+                                <img src="https://siriuscreator.github.io/apple.png" alt="" aria-hidden="true" class="w-5 h-5 mr-2" />
                                 App Store
                             </a>
                         </div>
                     </div>
 
-                    <div class="bg-white p-6 rounded-lg card">
-                        <h3 class="text-xl font-semibold text-gray-800 mb-3">QR Code Generator & Designer</h3>
-                        <p class="text-gray-600 mb-4">
+                    <!-- Product 2 -->
+                    <div class="content-card flex flex-col h-full">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">QR Code Generator & Designer</h3>
+                        <p class="text-gray-600 mb-6 flex-grow">
                             An advanced utility for generating and custom designing creative, stylized QR codes with tailored styles, colors, and layouts.
                         </p>
-                        <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-                            <a href="https://play.google.com/store/apps/details?id=com.rubybyte.awesome.qr.qr_code_generator" target="_blank" rel="noopener noreferrer" class="link-button link-button-secondary play-store">
-                                <img src="https://siriuscreator.github.io/google-play.png" alt="Google Play Icon" />
+                        <div class="flex flex-wrap gap-3 mt-auto">
+                            <a href="https://play.google.com/store/apps/details?id=com.rubybyte.awesome.qr..." target="_blank" rel="noopener noreferrer" class="btn-play-store">
+                                <img src="https://siriuscreator.github.io/google-play.png" alt="" aria-hidden="true" class="w-5 h-5 mr-2" />
                                 Play Store
                             </a>
-                            <a href="https://apps.apple.com/np/app/qr-code-generator-designer/id6755722319" target="_blank" rel="noopener noreferrer" class="link-button link-button-secondary apple-store">
-                                <img src="https://siriuscreator.github.io/apple.png" alt="App Store Icon" />
+                            <a href="https://apps.apple.com/np/app/qr-code-generator-designer/id6755722319" target="_blank" rel="noopener noreferrer" class="btn-apple-store">
+                                <img src="https://siriuscreator.github.io/apple.png" alt="" aria-hidden="true" class="w-5 h-5 mr-2" />
                                 App Store
                             </a>
                         </div>
                     </div>
 
-                    <div class="bg-white p-6 rounded-lg card">
-                        <h3 class="text-xl font-semibold text-gray-800 mb-3">Jhandi-Munda</h3>
-                        <p class="text-gray-600 mb-4">
-                            A faithful digital recreation of the traditional Nepali dice game, Jhandi Munda (also known as Langur Burja or Crown and Anchor), offering a fun and engaging experience.
+                    <!-- Product 3 -->
+                    <div class="content-card flex flex-col h-full">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Jhandi-Munda</h3>
+                        <p class="text-gray-600 mb-6 flex-grow">
+                            A faithful digital recreation of the traditional Nepali dice game, Jhandi Munda, offering a fun and engaging experience.
                         </p>
-                        <a href="https://play.google.com/store/apps/details?id=jhandi.munda.langur.burja.jhandi.burja.jhandi_burja" target="_blank" rel="noopener noreferrer" class="link-button link-button-secondary play-store">
-                            <img src="https://siriuscreator.github.io/google-play.png" alt="Google Play Icon" />
-                            Play Store
-                        </a>
+                        <div class="mt-auto">
+                            <a href="https://play.google.com/store/apps/details?id=jhandi.munda..." target="_blank" rel="noopener noreferrer" class="btn-play-store">
+                                <img src="https://siriuscreator.github.io/google-play.png" alt="" aria-hidden="true" class="w-5 h-5 mr-2" />
+                                Play Store
+                            </a>
+                        </div>
                     </div>
 
-                    <div class="bg-white p-6 rounded-lg card">
-                        <h3 class="text-xl font-semibold text-gray-800 mb-3">CV Maker</h3>
-                        <p class="text-gray-600 mb-4">
-                            A straightforward utility application designed to help users generate professional and well-formatted CVs quickly and effortlessly.
+                    <!-- Product 4 -->
+                    <div class="content-card flex flex-col h-full">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">CV Maker & Color Blind Test</h3>
+                        <p class="text-gray-600 mb-6 flex-grow">
+                            Utility applications designed to generate professional CVs and perform basic color blindness assessments effectively.
                         </p>
-                        <a href="https://play.google.com/store/apps/details?id=com.alphaK.my_info" target="_blank" rel="noopener noreferrer" class="link-button link-button-secondary play-store">
-                            <img src="https://siriuscreator.github.io/google-play.png" alt="Google Play Icon" />
-                            Play Store
-                        </a>
-                    </div>
-
-                    <div class="bg-white p-6 rounded-lg card">
-                        <h3 class="text-xl font-semibold text-gray-800 mb-3">Color Blind Test</h3>
-                        <p class="text-gray-600 mb-4">
-                            An application providing a simple yet effective way for users to perform basic color blindness tests, offering quick assessments of color vision.
-                        </p>
-                        <a href="https://play.google.com/store/apps/details?id=com.alphak.color_vision" target="_blank" rel="noopener noreferrer" class="link-button link-button-secondary play-store">
-                            <img src="https://siriuscreator.github.io/google-play.png" alt="Google Play Icon" />
-                            Play Store
-                        </a>
+                        <div class="flex flex-wrap gap-3 mt-auto">
+                            <a href="https://play.google.com/store/apps/details?id=com.alphaK.my_info" target="_blank" rel="noopener noreferrer" class="btn-play-store">
+                                <img src="https://siriuscreator.github.io/google-play.png" alt="" aria-hidden="true" class="w-5 h-5 mr-2" />
+                                CV Maker
+                            </a>
+                            <a href="https://play.google.com/store/apps/details?id=com.alphak.color_vision" target="_blank" rel="noopener noreferrer" class="btn-play-store">
+                                <img src="https://siriuscreator.github.io/google-play.png" alt="" aria-hidden="true" class="w-5 h-5 mr-2" />
+                                Color Test
+                            </a>
+                        </div>
                     </div>
 
                 </div>
             </section>
 
-            <section class="mb-12 p-8 rounded-xl bg-gray-50 card">
+            <!-- Contributed Apps Section -->
+            <section class="mb-8 p-8 rounded-2xl bg-gray-50/80 shadow-sm border border-gray-100">
                 <h2 class="section-title text-3xl sm:text-4xl mb-6 pb-4 border-b border-gray-200">Apps I Contributed to at Yarsa Labs</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 
-                    <div class="bg-white p-6 rounded-lg card">
-                        <h3 class="text-xl font-semibold text-gray-800 mb-3">Passport Size Photo Maker</h3>
-                        <p class="text-gray-600 mb-4">
-                            An efficient tool for creating passport and ID photos with various size and country specific options, ensuring compliance for official documents.
+                    <!-- App 1 -->
+                    <div class="content-card flex flex-col h-full">
+                        <h3 class="text-lg font-bold text-gray-800 mb-2">Passport Size Photo Maker</h3>
+                        <p class="text-sm text-gray-600 mb-6 flex-grow">
+                            An efficient tool for creating passport and ID photos ensuring compliance for official documents.
                         </p>
-                        <a href="https://play.google.com/store/apps/details?id=np.com.njs.autophotos&hl=en" target="_blank" rel="noopener noreferrer" class="link-button link-button-secondary play-store">
-                            <img src="https://siriuscreator.github.io/google-play.png" alt="Google Play Icon" />
+                        <a href="https://play.google.com/store/apps/details?id=np.com.njs.autophotos" target="_blank" rel="noopener noreferrer" class="btn-play-store w-fit">
+                            <img src="https://siriuscreator.github.io/google-play.png" alt="" aria-hidden="true" class="w-4 h-4 mr-2" />
                             Play Store
                         </a>
                     </div>
 
-                    <div class="bg-white p-6 rounded-lg card">
-                        <h3 class="text-xl font-semibold text-gray-800 mb-3">US Photo ID Maker (iOS)</h3>
-                        <p class="text-gray-600 mb-4">
-                            Specifically designed for creating US passport and ID photos, adhering to strict official requirements, available on iOS.
+                    <!-- App 2 -->
+                    <div class="content-card flex flex-col h-full">
+                        <h3 class="text-lg font-bold text-gray-800 mb-2">US Photo ID Maker</h3>
+                        <p class="text-sm text-gray-600 mb-6 flex-grow">
+                            Specifically designed for creating US passport and ID photos, adhering to strict official requirements.
                         </p>
-                        <a href="https://apps.apple.com/us/app/us-photo-id-maker/id6469270943" target="_blank" rel="noopener noreferrer" class="link-button link-button-secondary apple-store">
-                            <img src="https://siriuscreator.github.io/apple.png" alt="App Store Icon" />
+                        <a href="https://apps.apple.com/us/app/us-photo-id-maker/id6469270943" target="_blank" rel="noopener noreferrer" class="btn-apple-store w-fit">
+                            <img src="https://siriuscreator.github.io/apple.png" alt="" aria-hidden="true" class="w-4 h-4 mr-2" />
                             App Store
                         </a>
                     </div>
 
-                    <div class="bg-white p-6 rounded-lg card">
-                        <h3 class="text-xl font-semibold text-gray-800 mb-3">Passport Photo ID Photo App (iOS)</h3>
-                        <p class="text-gray-600 mb-4">
-                            A comprehensive iOS application for generating passport and ID photos for various countries, offering a user-friendly experience.
+                    <!-- App 3 -->
+                    <div class="content-card flex flex-col h-full">
+                        <h3 class="text-lg font-bold text-gray-800 mb-2">Passport Photo ID App</h3>
+                        <p class="text-sm text-gray-600 mb-6 flex-grow">
+                            A comprehensive iOS application for generating passport and ID photos for various countries.
                         </p>
-                        <a href="https://apps.apple.com/us/app/passport-photo-id-photo-app/id1294190634" target="_blank" rel="noopener noreferrer" class="link-button link-button-secondary apple-store">
-                            <img src="https://siriuscreator.github.io/apple.png" alt="App Store Icon" />
+                        <a href="https://apps.apple.com/us/app/passport-photo-id-photo-app/id1294190634" target="_blank" rel="noopener noreferrer" class="btn-apple-store w-fit">
+                            <img src="https://siriuscreator.github.io/apple.png" alt="" aria-hidden="true" class="w-4 h-4 mr-2" />
                             App Store
                         </a>
                     </div>
@@ -299,12 +248,13 @@
                 </div>
             </section>
 
-            <footer class="text-center text-gray-600 text-sm mt-10 pt-4 border-t border-gray-200">
-                <p>&copy; 2025 Anjan Khand All rights reserved.</p>
+            <!-- Footer -->
+            <footer class="text-center text-gray-500 text-sm mt-12 pt-6 border-t border-gray-200">
+                <p>&copy; 2026 Anjan Khand. All rights reserved.</p>
             </footer>
 
-        </div>
-    </div>
+        </article>
+    </main>
 
 </body>
 </html>
