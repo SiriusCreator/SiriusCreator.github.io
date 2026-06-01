@@ -410,6 +410,14 @@
     flex-wrap: wrap;
     gap: 8px;
   }
+ .product-card::after {
+    pointer-events: none;
+}
+
+.product-links {
+    position: relative;
+    z-index: 1;
+}
 
   .store-btn {
     display: inline-flex;
