@@ -1,843 +1,154 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Anjan Khand — Mobile App Developer specializing in Flutter, Java, and Swift.">
-<title>Anjan Khand — Mobile Developer</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  :root {
-    --bg: #0b0c0e;
-    --bg2: #111317;
-    --bg3: #181b20;
-    --surface: #1e2128;
-    --surface2: #252830;
-    --border: rgba(255,255,255,0.07);
-    --border-hover: rgba(255,255,255,0.14);
-    --text: #f0ede8;
-    --text-2: #9a9890;
-    --text-3: #5a5855;
-    --accent: #6ee7b7;
-    --accent2: #38bdf8;
-    --accent3: #f59e0b;
-    --red: #f87171;
-    --font-serif: 'Instrument Serif', Georgia, serif;
-    --font-sans: 'DM Sans', sans-serif;
-    --font-mono: 'JetBrains Mono', monospace;
-  }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: var(--font-sans);
-    font-size: 16px;
-    line-height: 1.7;
-    -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
-  }
-
-  /* Noise overlay */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-    pointer-events: none;
-    z-index: 0;
-    opacity: 0.4;
-  }
-
-  /* Grid lines background */
-  body::after {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(255,255,255,0.012) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,0.012) 1px, transparent 1px);
-    background-size: 60px 60px;
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  /* Glow orbs */
-  .orb {
-    position: fixed;
-    border-radius: 50%;
-    filter: blur(120px);
-    pointer-events: none;
-    z-index: 0;
-  }
-  .orb-1 { width: 500px; height: 500px; background: rgba(110,231,183,0.04); top: -100px; right: -150px; }
-  .orb-2 { width: 400px; height: 400px; background: rgba(56,189,248,0.04); bottom: 200px; left: -150px; }
-
-  /* Layout */
-  .container {
-    position: relative;
-    z-index: 1;
-    max-width: 860px;
-    margin: 0 auto;
-    padding: 0 32px;
-  }
-
-  /* NAV */
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    padding: 20px 0;
-    border-bottom: 1px solid transparent;
-    transition: border-color 0.3s, background 0.3s, backdrop-filter 0.3s;
-  }
-  nav.scrolled {
-    background: rgba(11,12,14,0.85);
-    backdrop-filter: blur(16px);
-    border-color: var(--border);
-  }
-  .nav-inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .nav-logo {
-    font-family: var(--font-mono);
-    font-size: 13px;
-    color: var(--accent);
-    text-decoration: none;
-    letter-spacing: 0.08em;
-  }
-  .nav-links {
-    display: flex;
-    gap: 32px;
-    list-style: none;
-  }
-  .nav-links a {
-    font-size: 13px;
-    color: var(--text-2);
-    text-decoration: none;
-    letter-spacing: 0.04em;
-    transition: color 0.2s;
-  }
-  .nav-links a:hover { color: var(--text); }
-
-  /* HERO */
-  .hero {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    padding: 120px 0 80px;
-  }
-  .hero-content { max-width: 700px; }
-
-  .hero-tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-family: var(--font-mono);
-    font-size: 12px;
-    color: var(--accent);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    margin-bottom: 28px;
-    padding: 6px 14px;
-    border: 1px solid rgba(110,231,183,0.2);
-    border-radius: 100px;
-    background: rgba(110,231,183,0.05);
-  }
-  .hero-tag::before {
-    content: '';
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: var(--accent);
-    animation: pulse 2s ease-in-out infinite;
-  }
-  @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.3; }
-  }
-
-  .hero-name {
-    font-family: var(--font-serif);
-    font-size: clamp(52px, 8vw, 88px);
-    line-height: 1.0;
-    letter-spacing: -0.02em;
-    color: var(--text);
-    margin-bottom: 8px;
-  }
-  .hero-name span {
-    font-style: italic;
-    color: var(--accent);
-  }
-
-  .hero-title {
-    font-family: var(--font-serif);
-    font-size: clamp(28px, 4vw, 42px);
-    font-style: italic;
-    color: var(--text-3);
-    margin-bottom: 32px;
-    line-height: 1.2;
-  }
-
-  .hero-bio {
-    font-size: 17px;
-    color: var(--text-2);
-    line-height: 1.8;
-    max-width: 560px;
-    margin-bottom: 44px;
-    font-weight: 300;
-  }
-
-  .hero-ctas {
-    display: flex;
-    gap: 16px;
-    flex-wrap: wrap;
-    align-items: center;
-  }
-
-  .btn-primary {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 13px 26px;
-    background: var(--accent);
-    color: #0b0c0e;
-    font-family: var(--font-sans);
-    font-size: 14px;
-    font-weight: 600;
-    text-decoration: none;
-    border-radius: 8px;
-    letter-spacing: 0.02em;
-    transition: all 0.25s;
-  }
-  .btn-primary:hover {
-    background: #4ade80;
-    transform: translateY(-1px);
-    box-shadow: 0 8px 24px rgba(110,231,183,0.25);
-  }
-
-  .btn-ghost {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 13px 26px;
-    background: transparent;
-    color: var(--text-2);
-    font-family: var(--font-sans);
-    font-size: 14px;
-    font-weight: 400;
-    text-decoration: none;
-    border-radius: 8px;
-    border: 1px solid var(--border);
-    letter-spacing: 0.02em;
-    transition: all 0.25s;
-  }
-  .btn-ghost:hover {
-    border-color: var(--border-hover);
-    color: var(--text);
-    background: var(--surface);
-  }
-
-  .hero-avatar {
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 280px;
-    height: 280px;
-    border-radius: 32px;
-    overflow: hidden;
-    border: 1px solid var(--border);
-    display: none;
-  }
-  @media (min-width: 900px) {
-    .hero-avatar { display: block; }
-    .hero-content { padding-right: 320px; }
-  }
-
-  /* SECTION LAYOUT */
-  section {
-    padding: 80px 0;
-    border-top: 1px solid var(--border);
-  }
-  section:first-child { border-top: none; }
-
-  .section-label {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    font-family: var(--font-mono);
-    font-size: 11px;
-    color: var(--text-3);
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    margin-bottom: 16px;
-  }
-  .section-label::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: var(--border);
-    max-width: 60px;
-  }
-
-  .section-title {
-    font-family: var(--font-serif);
-    font-size: clamp(32px, 4vw, 48px);
-    font-style: italic;
-    color: var(--text);
-    line-height: 1.1;
-    margin-bottom: 48px;
-    letter-spacing: -0.01em;
-  }
-
-  /* TECH STACK */
-  .tech-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-    gap: 10px;
-  }
-
-  .tech-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 12px 16px;
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--text-2);
-    cursor: default;
-    transition: all 0.2s;
-    position: relative;
-    overflow: hidden;
-  }
-  .tech-item::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, var(--accent) 0%, transparent 100%);
-    opacity: 0;
-    transition: opacity 0.3s;
-  }
-  .tech-item:hover {
-    border-color: rgba(110,231,183,0.3);
-    color: var(--text);
-    transform: translateY(-2px);
-  }
-  .tech-item:hover::before { opacity: 0.04; }
-
-  .tech-dot {
-    width: 7px; height: 7px;
-    border-radius: 50%;
-    flex-shrink: 0;
-  }
-
-  /* PRODUCTS GRID */
-  .products-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-    gap: 16px;
-  }
-
-  .product-card {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 28px;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    overflow: hidden;
-    transition: all 0.3s;
-    group: true;
-  }
-  .product-card::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: 16px;
-    border: 1px solid transparent;
-    background: linear-gradient(135deg, rgba(110,231,183,0.1), rgba(56,189,248,0.05)) border-box;
-    -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: destination-out;
-    mask-composite: exclude;
-    opacity: 0;
-    transition: opacity 0.3s;
-  }
-  .product-card:hover {
-    border-color: rgba(110,231,183,0.2);
-    transform: translateY(-3px);
-    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
-  }
-  .product-card:hover::after { opacity: 1; }
-
-  .product-index {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    color: var(--text-3);
-    letter-spacing: 0.1em;
-    margin-bottom: 16px;
-  }
-
-  .product-name {
-    font-family: var(--font-serif);
-    font-size: 22px;
-    color: var(--text);
-    margin-bottom: 12px;
-    line-height: 1.2;
-  }
-
-  .product-desc {
-    font-size: 14px;
-    color: var(--text-2);
-    line-height: 1.7;
-    flex: 1;
-    margin-bottom: 24px;
-    font-weight: 300;
-  }
-
-  .product-links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
- .product-card::after {
-    pointer-events: none;
-}
-
-.product-links {
-    position: relative;
-    z-index: 1;
-}
-
-  .store-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
-    padding: 8px 16px;
-    border-radius: 8px;
-    font-size: 13px;
-    font-weight: 500;
-    text-decoration: none;
-    border: 1px solid var(--border);
-    color: var(--text-2);
-    background: var(--surface);
-    transition: all 0.2s;
-    white-space: nowrap;
-  }
-  .store-btn svg { flex-shrink: 0; }
-  .store-btn:hover {
-    border-color: var(--border-hover);
-    color: var(--text);
-    background: var(--surface2);
-    transform: translateY(-1px);
-  }
-  .store-btn.android:hover { border-color: rgba(110,231,183,0.4); color: var(--accent); }
-  .store-btn.ios:hover { border-color: rgba(240,240,240,0.3); color: #f0f0f0; }
-
-  /* CONTRIBUTED APPS */
-  .contrib-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: 12px;
-  }
-
-  .contrib-card {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 22px;
-    transition: all 0.25s;
-    position: relative;
-    overflow: hidden;
-  }
-  .contrib-card:hover {
-    border-color: var(--border-hover);
-    transform: translateY(-2px);
-    background: var(--bg3);
-  }
-
-  .contrib-name {
-    font-family: var(--font-serif);
-    font-size: 17px;
-    color: var(--text);
-    margin-bottom: 8px;
-    line-height: 1.3;
-  }
-  .contrib-desc {
-    font-size: 13px;
-    color: var(--text-2);
-    line-height: 1.6;
-    margin-bottom: 18px;
-    font-weight: 300;
-  }
-
-  /* ABOUT section */
-  .about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-    align-items: start;
-  }
-  @media (max-width: 600px) {
-    .about-grid { grid-template-columns: 1fr; }
-  }
-
-  .about-text {
-    font-size: 16px;
-    color: var(--text-2);
-    line-height: 1.9;
-    font-weight: 300;
-  }
-  .about-text strong {
-    color: var(--text);
-    font-weight: 500;
-  }
-
-  .about-stats {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-  }
-
-  .stat-item {
-    padding: 20px 24px;
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-  }
-  .stat-num {
-    font-family: var(--font-serif);
-    font-size: 40px;
-    font-style: italic;
-    color: var(--accent);
-    line-height: 1;
-    margin-bottom: 4px;
-  }
-  .stat-label {
-    font-size: 13px;
-    color: var(--text-3);
-    letter-spacing: 0.04em;
-  }
-
-  /* FOOTER */
-  footer {
-    border-top: 1px solid var(--border);
-    padding: 40px 0;
-  }
-  .footer-inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 16px;
-  }
-  .footer-copy {
-    font-family: var(--font-mono);
-    font-size: 12px;
-    color: var(--text-3);
-    letter-spacing: 0.05em;
-  }
-  .footer-links {
-    display: flex;
-    gap: 20px;
-  }
-  .footer-links a {
-    font-family: var(--font-mono);
-    font-size: 12px;
-    color: var(--text-3);
-    text-decoration: none;
-    letter-spacing: 0.05em;
-    transition: color 0.2s;
-  }
-  .footer-links a:hover { color: var(--accent); }
-
-  /* SCROLL ANIMATIONS */
-  .fade-up {
-    opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-  }
-  .fade-up.visible {
-    opacity: 1;
-    transform: none;
-  }
-
-  /* Responsive */
-  @media (max-width: 600px) {
-    .container { padding: 0 20px; }
-    .products-grid { grid-template-columns: 1fr; }
-    .nav-links { display: none; }
-    .hero-ctas { flex-direction: column; align-items: flex-start; }
-  }
-
-  /* Scrollbar */
-  ::-webkit-scrollbar { width: 4px; }
-  ::-webkit-scrollbar-track { background: var(--bg); }
-  ::-webkit-scrollbar-thumb { background: var(--surface2); border-radius: 2px; }
-
-  /* Selection */
-  ::selection { background: rgba(110,231,183,0.25); color: var(--text); }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Support for Passport Photo Maker app">
+    <title>Passport Photo Maker - Support</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2 {
+            color: #2c3e50;
+        }
+        h1 {
+            text-align: center;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        h2 {
+            font-size: 1.5em;
+            margin-top: 20px;
+        }
+        p, ul {
+            margin: 10px 0;
+        }
+        ul {
+            list-style-type: disc;
+            margin-left: 20px;
+        }
+        a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .contact-form {
+            margin-top: 20px;
+        }
+        .contact-form label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .contact-form button {
+            background-color: #3498db;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .contact-form button:hover {
+            background-color: #2980b9;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 0.9em;
+            color: #777;
+        }
+        @media (max-width: 600px) {
+            .container {
+                margin: 10px;
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.5em;
+            }
+            h2 {
+                font-size: 1.2em;
+            }
+        }
+    </style>
 </head>
 <body>
+    <div class="container">
+        <h1>Passport Photo Maker - Support</h1>
+        <p>Welcome to the support page for Passport Photo Maker, your all-in-one solution for creating compliant passport, visa, and ID photos right from your smartphone!</p>
 
-<div class="orb orb-1"></div>
-<div class="orb orb-2"></div>
+        <h2>About the App</h2>
+        <p>Passport Photo Maker allows you to quickly crop, format, and prepare official photos according to passport, visa, and identification requirements for various countries. With automatic/manual background removal, precise cropping tools, and print layouts (such as standard photo sheet sizes), preparing your official documents has never been easier.</p>
 
-<!-- NAV -->
-<nav id="nav">
-  <div class="container">
-    <div class="nav-inner">
-      <a href="#" class="nav-logo">anjan.dev</a>
-      <ul class="nav-links">
-        <li><a href="#about">About</a></li>
-        <li><a href="#stack">Stack</a></li>
-        <li><a href="#products">Products</a></li>
-        <li><a href="#contrib">Work</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
-
-<!-- HERO -->
-<div class="container">
-  <section class="hero" style="border-top: none; padding-top: 120px;" id="hero">
-    <div class="hero-content">
-      <div class="hero-tag">Available for work</div>
-      <h1 class="hero-name">Anjan<br><span>Khand</span></h1>
-      <p class="hero-title">Mobile App Developer</p>
-      <p class="hero-bio">
-        I craft beautiful, high-performance mobile experiences using Flutter, Swift, and Kotlin. Passionate about real-time rendering, intuitive UX, and bringing creative visions to life through code.
-      </p>
-      <div class="hero-ctas">
-        <a href="https://www.linkedin.com/in/anjan-khand-thakuri/" target="_blank" rel="noopener" class="btn-primary">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-          LinkedIn
-        </a>
-        <a href="mailto:siriuscreator999@gmail.com" class="btn-ghost">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-          Send a message
-        </a>
-      </div>
-    </div>
-    <!-- Avatar -->
-    <div class="hero-avatar">
-      <img src="https://siriuscreator.github.io/anjan.jpg" alt="Anjan Khand" style="width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none';this.parentElement.style.background='#1e2128';this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:100%;font-family:JetBrains Mono,monospace;font-size:64px;color:#2a2d35\'>AK</div>';" />
-    </div>
-  </section>
-</div>
-
-<!-- ABOUT -->
-<div class="container" id="about">
-  <section>
-    <div class="section-label">01 — About</div>
-    <h2 class="section-title">The person<br>behind the code</h2>
-    <div class="about-grid fade-up">
-      <div>
-        <p class="about-text">
-          I'm a dedicated software developer with a deep passion for <strong>mobile applications</strong> and visual computing. My work spans from building intuitive consumer apps to crafting intricate graphical interfaces with real-time rendering.
-        </p>
-        <br>
-        <p class="about-text">
-          I've launched products independently and contributed to teams, always with the same obsession: <strong>making the experience feel effortless</strong>. Every pixel, every animation, every interaction matters.
-        </p>
-        <br>
-        <p class="about-text">
-          Based in Nepal 🇳🇵 — shipping to the world.
-        </p>
-      </div>
-      <div class="about-stats">
-        <div class="stat-item">
-          <div class="stat-num">7+</div>
-          <div class="stat-label">Apps shipped to production</div>
+        <h2>Contact Us</h2>
+        <p>If you have questions, feedback, or need assistance, reach out to us at <a href="mailto:siriuscreator999@gmail.com">siriuscreator999@gmail.com</a>.</p>
+        <div class="contact-form">
+            <h2>Send Us a Message</h2>
+            <form action="mailto:siriuscreator999@gmail.com" method="post" enctype="text/plain">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+                <button type="submit">Send</button>
+            </form>
         </div>
-        <div class="stat-item">
-          <div class="stat-num">2</div>
-          <div class="stat-label">Platforms — Android & iOS</div>
+
+        <h2>Frequently Asked Questions</h2>
+        <p><strong>How do I select the right size for my passport or visa?</strong> Select your target country or document type from the predefined preset list, or manually enter custom millimeter/inch dimensions required by your local agency.</p>
+        <p><strong>Can I change the background color?</strong> Yes, you can automatically or manually remove the original background and replace it with standard white, light grey, or custom plain colors required by document guidelines.</p>
+        <p><strong>How do I print my photos?</strong> You can save the formatted photo sheet (e.g., 4x6", 5x7", or A4 layout) directly to your device gallery and print it at home or at any local photo center.</p>
+        <p><strong>What if I encounter an issue?</strong> Check our troubleshooting section below or contact us at <a href="mailto:siriuscreator999@gmail.com">siriuscreator999@gmail.com</a>.</p>
+
+        <h2>Troubleshooting</h2>
+        <p><strong>App Crashes / Freeze:</strong> Ensure your device is running the latest operating system updates. Clearing the app cache or reinstalling can resolve temporary glitches.</p>
+        <p><strong>Background Removal Issues:</strong> For optimal automatic background removal results, take your photo against a high-contrast background with good lighting.</p>
+        <p><strong>Export/Save Errors:</strong> Ensure the app has permission to access your device’s storage or photo gallery to save high-resolution output files.</p>
+
+        <h2>Privacy and Terms</h2>
+        <p>Learn more about how we handle your data and the terms of using our app:</p>
+        <ul>
+            <li><a href="https://rubybyte.com/passport-photo-maker-privacy-policy/" target="_blank">Privacy Policy</a></li>
+            <li><a href="https://rubybyte.com/passport-photo-maker-terms-and-condition/" target="_blank">Terms and Conditions</a></li>
+        </ul>
+
+        <h2>Third-Party Services</h2>
+        <p>Our app uses third-party services to enhance your experience. View their policies for more information:</p>
+        <ul>
+            <li><a href="https://policies.google.com/privacy" target="_blank">Google Play Services</a></li>
+            <li><a href="https://www.google.com/policies/privacy/" target="_blank">AdMob</a></li>
+            <li><a href="https://firebase.google.com/policies/analytics" target="_blank">Firebase Analytics</a></li>
+            <li><a href="https://firebase.google.com/support/privacy" target="_blank">Firebase Crashlytics</a></li>
+        </ul>
+
+        <h2>Feedback</h2>
+        <p>We love hearing from you! Share your suggestions or report issues to help us improve Passport Photo Maker. Contact us at <a href="mailto:siriuscreator999@gmail.com">siriuscreator999@gmail.com</a>.</p>
+
+        <div class="footer">
+            <p>Last updated: September 3, 2026</p>
         </div>
-        <div class="stat-item">
-          <div class="stat-num">∞</div>
-          <div class="stat-label">Curiosity for visual computing</div>
-        </div>
-      </div>
     </div>
-  </section>
-</div>
-
-<!-- TECH STACK -->
-<div class="container" id="stack">
-  <section>
-    <div class="section-label">02 — Stack</div>
-    <h2 class="section-title">Technologies<br>I build with</h2>
-    <div class="tech-grid fade-up">
-      <div class="tech-item"><span class="tech-dot" style="background:#54c5f8"></span>Flutter</div>
-      <div class="tech-item"><span class="tech-dot" style="background:#f89820"></span>Java</div>
-      <div class="tech-item"><span class="tech-dot" style="background:#f05138"></span>Swift</div>
-      <div class="tech-item"><span class="tech-dot" style="background:#7f52ff"></span>Kotlin</div>
-      <div class="tech-item"><span class="tech-dot" style="background:#f0db4f"></span>JavaScript</div>
-      <div class="tech-item"><span class="tech-dot" style="background:#0c4b33"></span>Django</div>
-      <div class="tech-item"><span class="tech-dot" style="background:#3ecf8e"></span>Supabase</div>
-      <div class="tech-item"><span class="tech-dot" style="background:#ffca28"></span>Firebase</div>
-      <div class="tech-item"><span class="tech-dot" style="background:#6ee7b7"></span>REST API</div>
-      <div class="tech-item"><span class="tech-dot" style="background:#888"></span>JSON</div>
-      <div class="tech-item"><span class="tech-dot" style="background:#ff9900"></span>AWS</div>
-      <div class="tech-item"><span class="tech-dot" style="background:#ffcc00"></span>Hugging Face</div>
-    </div>
-  </section>
-</div>
-
-<!-- FOUNDED PRODUCTS -->
-<div class="container" id="products">
-  <section>
-    <div class="section-label">03 — Founded Products</div>
-    <h2 class="section-title">Apps I built<br>from scratch</h2>
-    <div class="products-grid">
-
-      <div class="product-card fade-up">
-        <div class="product-index">01</div>
-        <h3 class="product-name">Happy Birthday Templates Editor</h3>
-        <p class="product-desc">An intuitive tool for crafting personalized birthday templates, messages, statuses, and captions for friends, family, and loved ones.</p>
-        <div class="product-links">
-          <a href="https://play.google.com/store/apps/details?id=birthday.wishes.birthday.message.status.caption.baby.child.friend.family.best.good.birthday.wishes.birthday_wishes" target="_blank" rel="noopener" class="store-btn android">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 11.8c-.4-1.4-1.4-2.5-2.8-3.1l1.2-2.3c.1-.2 0-.4-.1-.5-.2-.1-.4 0-.5.1l-1.2 2.3C13.5 8 12.8 7.8 12 7.8s-1.5.2-2.2.5L8.6 6c-.1-.2-.3-.2-.5-.1s-.2.3-.1.5l1.2 2.3c-1.4.6-2.4 1.7-2.8 3.1H17.6zM9.5 10.5c-.3 0-.5-.2-.5-.5s.2-.5.5-.5.5.2.5.5-.2.5-.5.5zm5 0c-.3 0-.5-.2-.5-.5s.2-.5.5-.5.5.2.5.5-.2.5-.5.5z"/><path d="M6 13v6c0 .6.4 1 1 1h1v2.5c0 .8.7 1.5 1.5 1.5S11 23.3 11 22.5V20h2v2.5c0 .8.7 1.5 1.5 1.5S16 23.3 16 22.5V20h1c.6 0 1-.4 1-1v-6H6z"/><path d="M4.5 13C3.7 13 3 13.7 3 14.5v3c0 .8.7 1.5 1.5 1.5S6 18.3 6 17.5v-3C6 13.7 5.3 13 4.5 13zm15 0c-.8 0-1.5.7-1.5 1.5v3c0 .8.7 1.5 1.5 1.5S21 18.3 21 17.5v-3c0-.8-.7-1.5-1.5-1.5z"/></svg>
-            Play Store
-          </a>
-          <a href="https://apps.apple.com/np/app/birthday-card-maker-wishes/id6748813997" target="_blank" rel="noopener" class="store-btn ios">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11"/></svg>
-            App Store
-          </a>
-        </div>
-      </div>
-
-      <div class="product-card fade-up" style="transition-delay: 0.1s">
-        <div class="product-index">02</div>
-        <h3 class="product-name">QR Code Generator & Designer</h3>
-        <p class="product-desc">Advanced utility for generating stylized QR codes with custom styles, colors, patterns, and branded layouts.</p>
-        <div class="product-links">
-          <a href="https://play.google.com/store/apps/details?id=com.rubybyte.awesome.qr.qr_code_generator" target="_blank" rel="noopener" class="store-btn android">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 11.8c-.4-1.4-1.4-2.5-2.8-3.1l1.2-2.3c.1-.2 0-.4-.1-.5-.2-.1-.4 0-.5.1l-1.2 2.3C13.5 8 12.8 7.8 12 7.8s-1.5.2-2.2.5L8.6 6c-.1-.2-.3-.2-.5-.1s-.2.3-.1.5l1.2 2.3c-1.4.6-2.4 1.7-2.8 3.1H17.6zM9.5 10.5c-.3 0-.5-.2-.5-.5s.2-.5.5-.5.5.2.5.5-.2.5-.5.5zm5 0c-.3 0-.5-.2-.5-.5s.2-.5.5-.5.5.2.5.5-.2.5-.5.5z"/><path d="M6 13v6c0 .6.4 1 1 1h1v2.5c0 .8.7 1.5 1.5 1.5S11 23.3 11 22.5V20h2v2.5c0 .8.7 1.5 1.5 1.5S16 23.3 16 22.5V20h1c.6 0 1-.4 1-1v-6H6z"/><path d="M4.5 13C3.7 13 3 13.7 3 14.5v3c0 .8.7 1.5 1.5 1.5S6 18.3 6 17.5v-3C6 13.7 5.3 13 4.5 13zm15 0c-.8 0-1.5.7-1.5 1.5v3c0 .8.7 1.5 1.5 1.5S21 18.3 21 17.5v-3c0-.8-.7-1.5-1.5-1.5z"/></svg>
-            Play Store
-          </a>
-          <a href="https://apps.apple.com/np/app/qr-code-generator-designer/id6755722319" target="_blank" rel="noopener" class="store-btn ios">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11"/></svg>
-            App Store
-          </a>
-        </div>
-      </div>
-
-      <div class="product-card fade-up" style="transition-delay: 0.2s">
-        <div class="product-index">03</div>
-        <h3 class="product-name">Jhandi-Munda</h3>
-        <p class="product-desc">A faithful digital recreation of the beloved traditional Nepali dice game, bringing culture and nostalgia to mobile.</p>
-        <div class="product-links">
-          <a href="https://play.google.com/store/apps/details?id=jhandi.munda.langur.burja.jhandi.burja.jhandi_burja" target="_blank" rel="noopener" class="store-btn android">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 11.8c-.4-1.4-1.4-2.5-2.8-3.1l1.2-2.3c.1-.2 0-.4-.1-.5-.2-.1-.4 0-.5.1l-1.2 2.3C13.5 8 12.8 7.8 12 7.8s-1.5.2-2.2.5L8.6 6c-.1-.2-.3-.2-.5-.1s-.2.3-.1.5l1.2 2.3c-1.4.6-2.4 1.7-2.8 3.1H17.6zM9.5 10.5c-.3 0-.5-.2-.5-.5s.2-.5.5-.5.5.2.5.5-.2.5-.5.5zm5 0c-.3 0-.5-.2-.5-.5s.2-.5.5-.5.5.2.5.5-.2.5-.5.5z"/><path d="M6 13v6c0 .6.4 1 1 1h1v2.5c0 .8.7 1.5 1.5 1.5S11 23.3 11 22.5V20h2v2.5c0 .8.7 1.5 1.5 1.5S16 23.3 16 22.5V20h1c.6 0 1-.4 1-1v-6H6z"/><path d="M4.5 13C3.7 13 3 13.7 3 14.5v3c0 .8.7 1.5 1.5 1.5S6 18.3 6 17.5v-3C6 13.7 5.3 13 4.5 13zm15 0c-.8 0-1.5.7-1.5 1.5v3c0 .8.7 1.5 1.5 1.5S21 18.3 21 17.5v-3c0-.8-.7-1.5-1.5-1.5z"/></svg>
-            Play Store
-          </a>
-        </div>
-      </div>
-
-      <div class="product-card fade-up" style="transition-delay: 0.3s">
-        <div class="product-index">04</div>
-        <h3 class="product-name">CV Maker & Color Blind Test</h3>
-        <p class="product-desc">Utility apps for generating polished professional CVs and running accessible color blindness assessments.</p>
-        <div class="product-links">
-          <a href="https://play.google.com/store/apps/details?id=com.alphaK.my_info" target="_blank" rel="noopener" class="store-btn android">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 11.8c-.4-1.4-1.4-2.5-2.8-3.1l1.2-2.3c.1-.2 0-.4-.1-.5-.2-.1-.4 0-.5.1l-1.2 2.3C13.5 8 12.8 7.8 12 7.8s-1.5.2-2.2.5L8.6 6c-.1-.2-.3-.2-.5-.1s-.2.3-.1.5l1.2 2.3c-1.4.6-2.4 1.7-2.8 3.1H17.6zM9.5 10.5c-.3 0-.5-.2-.5-.5s.2-.5.5-.5.5.2.5.5-.2.5-.5.5zm5 0c-.3 0-.5-.2-.5-.5s.2-.5.5-.5.5.2.5.5-.2.5-.5.5z"/><path d="M6 13v6c0 .6.4 1 1 1h1v2.5c0 .8.7 1.5 1.5 1.5S11 23.3 11 22.5V20h2v2.5c0 .8.7 1.5 1.5 1.5S16 23.3 16 22.5V20h1c.6 0 1-.4 1-1v-6H6z"/><path d="M4.5 13C3.7 13 3 13.7 3 14.5v3c0 .8.7 1.5 1.5 1.5S6 18.3 6 17.5v-3C6 13.7 5.3 13 4.5 13zm15 0c-.8 0-1.5.7-1.5 1.5v3c0 .8.7 1.5 1.5 1.5S21 18.3 21 17.5v-3c0-.8-.7-1.5-1.5-1.5z"/></svg>
-            CV Maker
-          </a>
-          <a href="https://play.google.com/store/apps/details?id=com.alphak.color_vision" target="_blank" rel="noopener" class="store-btn android">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 11.8c-.4-1.4-1.4-2.5-2.8-3.1l1.2-2.3c.1-.2 0-.4-.1-.5-.2-.1-.4 0-.5.1l-1.2 2.3C13.5 8 12.8 7.8 12 7.8s-1.5.2-2.2.5L8.6 6c-.1-.2-.3-.2-.5-.1s-.2.3-.1.5l1.2 2.3c-1.4.6-2.4 1.7-2.8 3.1H17.6zM9.5 10.5c-.3 0-.5-.2-.5-.5s.2-.5.5-.5.5.2.5.5-.2.5-.5.5zm5 0c-.3 0-.5-.2-.5-.5s.2-.5.5-.5.5.2.5.5-.2.5-.5.5z"/><path d="M6 13v6c0 .6.4 1 1 1h1v2.5c0 .8.7 1.5 1.5 1.5S11 23.3 11 22.5V20h2v2.5c0 .8.7 1.5 1.5 1.5S16 23.3 16 22.5V20h1c.6 0 1-.4 1-1v-6H6z"/><path d="M4.5 13C3.7 13 3 13.7 3 14.5v3c0 .8.7 1.5 1.5 1.5S6 18.3 6 17.5v-3C6 13.7 5.3 13 4.5 13zm15 0c-.8 0-1.5.7-1.5 1.5v3c0 .8.7 1.5 1.5 1.5S21 18.3 21 17.5v-3c0-.8-.7-1.5-1.5-1.5z"/></svg>
-            Color Test
-          </a>
-        </div>
-      </div>
-
-    </div>
-  </section>
-</div>
-
-<!-- CONTRIBUTED -->
-<div class="container" id="contrib">
-  <section>
-    <div class="section-label">04 — Contributions</div>
-    <h2 class="section-title">Work at<br>Yarsa Labs</h2>
-    <div class="contrib-grid">
-
-      <div class="contrib-card fade-up">
-        <h3 class="contrib-name">Passport Size Photo Maker</h3>
-        <p class="contrib-desc">Efficient tool for creating passport and ID photos in compliance with official document standards.</p>
-        <a href="https://play.google.com/store/apps/details?id=np.com.njs.autophotos" target="_blank" rel="noopener" class="store-btn android" style="display:inline-flex">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 11.8c-.4-1.4-1.4-2.5-2.8-3.1l1.2-2.3c.1-.2 0-.4-.1-.5-.2-.1-.4 0-.5.1l-1.2 2.3C13.5 8 12.8 7.8 12 7.8s-1.5.2-2.2.5L8.6 6c-.1-.2-.3-.2-.5-.1s-.2.3-.1.5l1.2 2.3c-1.4.6-2.4 1.7-2.8 3.1H17.6zM9.5 10.5c-.3 0-.5-.2-.5-.5s.2-.5.5-.5.5.2.5.5-.2.5-.5.5zm5 0c-.3 0-.5-.2-.5-.5s.2-.5.5-.5.5.2.5.5-.2.5-.5.5z"/><path d="M6 13v6c0 .6.4 1 1 1h1v2.5c0 .8.7 1.5 1.5 1.5S11 23.3 11 22.5V20h2v2.5c0 .8.7 1.5 1.5 1.5S16 23.3 16 22.5V20h1c.6 0 1-.4 1-1v-6H6z"/><path d="M4.5 13C3.7 13 3 13.7 3 14.5v3c0 .8.7 1.5 1.5 1.5S6 18.3 6 17.5v-3C6 13.7 5.3 13 4.5 13zm15 0c-.8 0-1.5.7-1.5 1.5v3c0 .8.7 1.5 1.5 1.5S21 18.3 21 17.5v-3c0-.8-.7-1.5-1.5-1.5z"/></svg>
-          Play Store
-        </a>
-      </div>
-
-      <div class="contrib-card fade-up" style="transition-delay: 0.1s">
-        <h3 class="contrib-name">US Photo ID Maker</h3>
-        <p class="contrib-desc">Designed for US passport and ID photos, strictly adhering to official government requirements.</p>
-        <a href="https://apps.apple.com/us/app/us-photo-id-maker/id6469270943" target="_blank" rel="noopener" class="store-btn ios" style="display:inline-flex">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11"/></svg>
-          App Store
-        </a>
-      </div>
-
-      <div class="contrib-card fade-up" style="transition-delay: 0.2s">
-        <h3 class="contrib-name">Passport Photo ID App</h3>
-        <p class="contrib-desc">Comprehensive iOS app for generating passport and ID photos for multiple countries worldwide.</p>
-        <a href="https://apps.apple.com/us/app/passport-photo-id-photo-app/id1294190634" target="_blank" rel="noopener" class="store-btn ios" style="display:inline-flex">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11"/></svg>
-          App Store
-        </a>
-      </div>
-
-    </div>
-  </section>
-</div>
-
-<!-- FOOTER -->
-<div class="container">
-  <footer>
-    <div class="footer-inner">
-      <span class="footer-copy">© 2026 Anjan Khand</span>
-      <div class="footer-links">
-        <a href="https://www.linkedin.com/in/anjan-khand-thakuri/" target="_blank" rel="noopener">linkedin</a>
-        <a href="mailto:siriuscreator999@gmail.com">email</a>
-      </div>
-    </div>
-  </footer>
-</div>
-
-<script>
-  // Sticky nav
-  const nav = document.getElementById('nav');
-  window.addEventListener('scroll', () => {
-    nav.classList.toggle('scrolled', window.scrollY > 40);
-  }, { passive: true });
-
-  // Scroll animations
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
-  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-
-  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-
-  // Stagger children in grids
-  document.querySelectorAll('.tech-grid, .products-grid, .contrib-grid').forEach(grid => {
-    Array.from(grid.children).forEach((child, i) => {
-      child.style.transitionDelay = (i * 0.06) + 's';
-    });
-  });
-</script>
 </body>
 </html>
